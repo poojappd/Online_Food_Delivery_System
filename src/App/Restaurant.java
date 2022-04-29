@@ -1,11 +1,12 @@
 package App;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Restaurant {
     private final String restaurantName;
     private final String restaurantArea;
-    private ArrayList<Food> menu = new ArrayList<>();
+    private HashMap<Food> menu = new ArrayList<>();
     private ArrayList<Bill> OrderHistory;
 
      Restaurant(String restaurantName, String restaurantArea){
@@ -43,7 +44,11 @@ public class Restaurant {
         return restaurantArea;
     }
 
-    void prepareOrder()
+    int getFoodId(){
+
+    }
+
+    void prepareOrder(UserProfile user, ArrayList<>){}
 
 
 
