@@ -17,38 +17,36 @@ public class Database {
         return database;
     }
 
-    //Data
+    // Data
     private final Map<String, UserProfile> EndUsers = new HashMap<>();
-    private final ArrayList<Restaurant> allRestaurants = new ArrayList<>();
+    private final HashMap<String, Restaurant> allRestaurants = new HashMap<>();
     private final ArrayList<String> deliveringAreas = new ArrayList<>();
     private final ArrayList<DeliveryPartner> deliveryPartners = new ArrayList<>();
 
-    void addUser(UserProfile newUser){
+    void addUser(UserProfile newUser) {
 
     }
 
-    void addRestaurant(){
+    void addRestaurant() {
 
     }
 
-    void addDeliveringArea(){
+    void addDeliveringArea() {
 
     }
 
-    void addDeliveryPartner(){
+    void addDeliveryPartner() {
 
     }
 
-    UserProfile getUserProfile(String username, char[] password){
+    UserProfile getUserProfile(String username, char[] password) {
         UserProfile tempUser = EndUsers.get(username);
-        if(tempUser != null){
-            if(tempUser.validatePassword(password)){
+        if (tempUser != null) {
+            if (tempUser.validatePassword(password)) {
                 return tempUser;
             }
         }
         return null;
     }
-
-
 
 }
