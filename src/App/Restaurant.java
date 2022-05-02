@@ -27,7 +27,7 @@ public class Restaurant {
             this.preparingTime = preparingTime;
         }
     }
-
+    //admin
     void addFoods(String foodName, String foodType, int foodPrice, int preparingTime) {
         menu.put(foodName, new Food(foodName, foodType, foodPrice, preparingTime));
     }
