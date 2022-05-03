@@ -21,7 +21,7 @@ public class Database {
 
     // Data
     private final Map<String, UserProfile> EndUsers = new HashMap<>();
-    private final HashMap<String, Restaurant> allRestaurants = new HashMap<>();
+    private final ArrayList<Restaurant> allRestaurants = new ArrayList<>();
     private final ArrayList<String> deliveringAreas = new ArrayList<>();
     private final HashMap<Integer, DeliveryPartner> deliveryPartners = new HashMap();
 
@@ -30,12 +30,12 @@ public class Database {
     }
 
     void addRestaurant(Restaurant newRestaurant) {
-        allRestaurants.put(newRestaurant.getRestaurantName(), newRestaurant);
+        allRestaurants.add(newRestaurant);
 
     }
 
     void addDeliveringArea() {
-        String
+        // String
 
     }
 
@@ -43,7 +43,6 @@ public class Database {
         deliveryPartners.put(newDeliveryPartner.getId(), deliveryPartner);
 
     }
-
 
     UserProfile getUserProfile(String username, char[] password) {
         UserProfile tempUser = EndUsers.get(username);
@@ -55,12 +54,12 @@ public class Database {
         return null;
     }
 
-    Restaurant.Food getFoodObject(){
+    Restaurant.Food getFoodObject() {
 
     }
 
-    HashMap<String, Restaurant> fetchRestaurant(){
-        return new HashMap<>(allRestaurants);
+    ArrayList<Restaurant> fetchAllRestaurantData() {
+        return new ArrayList<>(allRestaurants);
     }
 
 }

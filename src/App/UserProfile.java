@@ -24,7 +24,7 @@ public class UserProfile {
         return userAddress;
     }
 
-    void changeUserAddress(String newAddress, int[] pinCode) {
+    private void changeUserAddress(String newAddress, int[] pinCode) {
         this.userAddress = newAddress;
         this.pinCode = pinCode;
     }
@@ -33,6 +33,7 @@ public class UserProfile {
         return (Arrays.equals(this.userPassword, userPassword));
     }
 
+    // private
     void setCart(Cart myCart) {
         this.myCart = myCart;
     }

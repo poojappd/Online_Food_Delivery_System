@@ -6,12 +6,11 @@ public class UserApp {
     Cart currentUserCart;
     DisplayData display = new DisplayData();
 
-
     private void goToLoginPage(String loginType) {
         String userName = "";
         char[] userPassword = {};
 
-        //existing user
+        // existing user
         if (loginType.equals("login")) {
             // get userName, password and fetch from db
             currentAppUser = database.getUserProfile(userName, userPassword);
@@ -31,7 +30,8 @@ public class UserApp {
 
     private void goToHomepage() {
         display.showRestaurants();
-//aa
+        // waiting for user to pick a restaurant
+        // if user pick a restaurant
 
     }
 
@@ -48,7 +48,7 @@ public class UserApp {
         if (currentAppUser != null) {
             // if existing user, load their pre-saved cart
             currentUserCart = currentAppUser.getCart();
-            //else create a new Cart
+            // else create a new Cart
 
             goToHomepage();
         }

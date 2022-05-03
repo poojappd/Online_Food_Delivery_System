@@ -27,8 +27,9 @@ public class Restaurant {
             this.preparingTime = preparingTime;
         }
     }
-    //admin
-    void addFoods(String foodName, String foodType, int foodPrice, int preparingTime) {
+
+    // admin
+    private void addFoods(String foodName, String foodType, int foodPrice, int preparingTime) {
         menu.put(foodName, new Food(foodName, foodType, foodPrice, preparingTime));
     }
 
@@ -49,8 +50,8 @@ public class Restaurant {
         return 0;
     }
 
-    void prepareOrder(UserProfile user, ArrayList<Food> foodItems, ArrayList<Integer> quantity) {
-
+    void prepareOrder(String userName, String userAddress, ArrayList<ItemList> foodItemsList) {
+        new Bill(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
     }
 
 }

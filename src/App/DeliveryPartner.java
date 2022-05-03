@@ -6,6 +6,7 @@ public class DeliveryPartner {
     String deliveryPartnerName;
     int deliveryPartnerAge;
     String currentArea;
+    ArrayList<DeliveryPackage> deliveryPackages;
     ArrayList<DeliveringAreas>;
 
     DeliveryPartner(String deliveryPartnerName, int deliveryPartnerAge){
@@ -13,11 +14,15 @@ public class DeliveryPartner {
         this.deliveryPartnerAge = deliveryPartnerAge;
     }
 
-    void updateCurrentLocation(String updatedArea){
+    void updateCurrentArea(String updatedArea){
         this.currentArea = updatedArea;
     }
 
-    void pickupOrder(String restaurantName, String restaurantLocation){
+    void pickupOrder(String restaurantName, String restaurantArea){
 
     }
+    void deliverOrder(){
+        //remove package from deliveryPackages
+    }
+
 }
