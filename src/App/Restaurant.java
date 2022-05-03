@@ -50,8 +50,15 @@ public class Restaurant {
         return 0;
     }
 
-    void prepareOrder(String userName, String userAddress, ArrayList<ItemList> foodItemsList) {
+    private Food checkFood(String foodName){
+        if(menu.containsKey(foodName)){
+            return new Food()
+        }
+    }
+
+    Food prepareOrder(String userName, String userAddress, ArrayList<ItemList> foodItemsList) {
         new Bill(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
+
     }
 
 }
