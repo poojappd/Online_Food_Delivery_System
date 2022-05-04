@@ -2,10 +2,7 @@ package App;
 
 import java.util.ArrayList;
 
-enum OrderStatus {
-    CONFIRMED,
-    CANCELLED,
-}
+
 
 public class Bill {
     int billId;
@@ -15,6 +12,11 @@ public class Bill {
     String userAddress;
     int totalPrice;
     ArrayList<ItemList> foodItemsList;
+    enum OrderStatus {
+        CONFIRMED,
+        CANCELLED,
+    }
+
     OrderStatus orderStatus;
 
     Bill() {
@@ -33,7 +35,7 @@ public class Bill {
     }
 
     int findTotalPrice(ArrayList<ItemList> foodItemsList) {
-        int totalPrice = 0;
+        totalPrice = 0;
 
         // iterate over the itemsList and increment totalPrice
         return totalPrice;

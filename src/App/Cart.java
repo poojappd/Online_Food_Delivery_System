@@ -29,9 +29,7 @@ public class Cart {
 
     // remove the food object
     void removeItems(String foodName) {
-        if (cartItems.containsKey(foodName)) {
             cartItems.remove(foodName);
-        }
     }
 
     // replace quantity of existing foods

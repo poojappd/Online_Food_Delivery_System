@@ -23,23 +23,23 @@ public class Database {
     private final Map<String, UserProfile> EndUsers = new HashMap<>();
     private final ArrayList<Restaurant> allRestaurants = new ArrayList<>();
     private final ArrayList<String> deliveringAreas = new ArrayList<>();
-    private final HashMap<Integer, DeliveryPartner> deliveryPartners = new HashMap();
+    private final HashMap<Integer, DeliveryPartner> deliveryPartners = new HashMap<>();
 
     void addUser(UserProfile newUser) {
         EndUsers.put(newUser.getUserName(), newUser);
     }
 
-    void addRestaurant(Restaurant newRestaurant) {
+    private void addRestaurant(Restaurant newRestaurant) {
         allRestaurants.add(newRestaurant);
 
     }
 
-    void addDeliveringArea() {
+    private void addDeliveringArea(String deliveringArea) {
         // String
 
     }
 
-    void addDeliveryPartner(@NotNull DeliveryPartner newDeliveryPartner) {
+    private void addDeliveryPartner(@NotNull DeliveryPartner newDeliveryPartner) {
         deliveryPartners.put(newDeliveryPartner.getId(), deliveryPartner);
 
     }
@@ -58,8 +58,49 @@ public class Database {
 
     }
 
-    ArrayList<Restaurant> fetchAllRestaurantData() {
+    //admin
+   Restaurant fetchRestaurant(String restaurantName)
+    {
+        for(Restaurant restaurant :allRestaurants){
+            if (restaurant.getRestaurantName().equals(restaurantName)){
+                return restaurant;
+            }
+        }
+        return null;
+
+    }
+
+    ArrayList<Restaurant> fetchAllRestaurantData()
+    {
         return new ArrayList<>(allRestaurants);
+
+    }
+
+    void onlyAllowAdmin(String methodName, Object parameter){
+        String callerClassName = new Exception().getStackTrace()[1].getClassName();
+
+        if(callerClassName.equals("App.Admin")){
+
+            switch (methodName){
+                case "addUser":
+                    addUser((UserProfile) parameter);
+                    break;
+                case "addRestaurant":
+                    addRestaurant((Restaurant) parameter);
+                    break;
+                case "addDeliveringArea":
+                    addDeliveringArea((String) parameter);
+                    break;
+                case "addDeliveryPartner":
+                    addDeliveryPartner((DeliveryPartner) parameter);
+                    break;
+            }
+
+
+
+
+
+        }
     }
 
 }

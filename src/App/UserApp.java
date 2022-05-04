@@ -1,10 +1,10 @@
 package App;
 
 public class UserApp {
-    UserProfile currentAppUser;
-    Database database = Database.instantiateOnce();
-    Cart currentUserCart;
-    DisplayData display = new DisplayData();
+    private UserProfile currentAppUser;
+    private Database database = Database.instantiateOnce();
+    private Cart currentUserCart;
+    private DisplayData display = new DisplayData();
 
     private void goToLoginPage(String loginType) {
         String userName = "";
@@ -32,6 +32,10 @@ public class UserApp {
         display.showRestaurants();
         // waiting for user to pick a restaurant
         // if user pick a restaurant
+        int chosenRestaurantId = 0;
+
+        display.showRestaurantMenu();
+
 
     }
 

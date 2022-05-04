@@ -3,7 +3,7 @@ package App;
 import java.util.HashMap;
 
 public class IdGenerator {
-    static int bill_Id = ;
+    static int bill_Id = 1;
     static HashMap<String, Integer> restaurantOrderIds;
 
     int generateBillId() {
@@ -15,7 +15,7 @@ public class IdGenerator {
         int orderId;
         if (restaurantOrderIds.containsKey(restaurantName)){
             orderId = restaurantOrderIds.get(restaurantName);
-            restaurantOrderIds.put(restaurantName, orderId++);
+            restaurantOrderIds.put(restaurntName, orderId++);
             
         }
         else{
@@ -25,5 +25,5 @@ public class IdGenerator {
     return orderId;
     }
 
-    int generate()
+    int generate(){}
 }

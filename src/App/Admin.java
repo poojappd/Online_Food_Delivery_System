@@ -3,9 +3,9 @@ package App;
 public class Admin {
     Database database = Database.instantiateOnce();
 
-    void createRestaurant(String restaurantName, String restaurantArea) {
+    private void createRestaurant(String restaurantName, String restaurantArea) {
         Restaurant newRestaurant = new Restaurant(restaurantName, restaurantArea);
-        database.addRestaurant(newRestaurant);
+        database.onlyAllowAdmin("addRestaurant", newRestaurant);
     }
 
     private void addFoodToRestaurant() {
@@ -16,9 +16,10 @@ public class Admin {
     private void createDeliveryPartner(String name, int age) {
 
         DeliveryPartner newDeliveryPartner = new DeliveryPartner(name, age);
+        database.onlyAllowAdmin("addDeliveryPartner", newDeliveryPartner);
     }
 
-    void assignDeliveryPartner() {
+    private void assignDeliveryPartner() {
         // find nearest delivery partner and call them
 
     }

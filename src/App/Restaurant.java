@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Restaurant {
     private final String restaurantName;
     private final String restaurantArea;
-    private HashMap<String, Food> menu = new HashMap<>();
+    private final HashMap<String, Food> menu = new HashMap<>();
     private ArrayList<Bill> OrderHistory;
 
     Restaurant(String restaurantName, String restaurantArea) {
@@ -34,8 +34,8 @@ public class Restaurant {
     }
 
     // Displays Food objects as Menu
-    void showMenu() {
-
+    HashMap<String, Food> getMenu() {
+        return new HashMap(menu);
     }
 
     String getRestaurantName() {
@@ -46,19 +46,25 @@ public class Restaurant {
         return restaurantArea;
     }
 
-    int getFoodId() {
-        return 0;
-    }
-
     private Food checkFood(String foodName){
         if(menu.containsKey(foodName)){
-            return new Food()
+            Food orderedFood = menu.get(foodName);
+            return new Food(orderedFood.foodName, orderedFood.foodType,
+                    orderedFood.foodPrice, orderedFood.preparingTime);
         }
+        return null;
     }
 
-    Food prepareOrder(String userName, String userAddress, ArrayList<ItemList> foodItemsList) {
+    void prepareOrder(String userName, String userAddress, ArrayList<ItemList> foodItemsList) {
+        ArrayList<Food> foodItems = new ArrayList<>();
+        Food food;
+        for(ItemList itemList : foodItemsList)
+        {   food = checkFood(itemList.foodName);
+            if(food != null){
+                foodItems.add(food);
+            }
+            else
+        }
         new Bill(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
-
     }
-
 }
