@@ -42,6 +42,12 @@ public class Cart {
     // remove all food objects
     void emptyCart() {
         cartItems.clear();
+        restaurantName = null;
+        restaurantArea = null;
+    }
+
+    String getRestaurantName(){
+        return restaurantName;
     }
 
 }

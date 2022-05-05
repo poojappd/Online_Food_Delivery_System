@@ -1,7 +1,7 @@
 package App;
 
 public class Admin {
-    Database database = Database.instantiateOnce();
+    private Database database = Database.instantiateOnce();
 
     private void createRestaurant(String restaurantName, String restaurantArea) {
         Restaurant newRestaurant = new Restaurant(restaurantName, restaurantArea);
@@ -27,5 +27,6 @@ public class Admin {
     static void giveRestaurantOrder() {
 
     }
+
 
 }

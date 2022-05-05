@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Restaurant {
+    final int restaurantId = IdGenerator.generateRestaurantId();
     private final String restaurantName;
     private final String restaurantArea;
     private final HashMap<String, Food> menu = new HashMap<>();
-    private ArrayList<Bill> OrderHistory;
+    private ArrayList<Bill> OrderHistory = new ArrayList<>();
 
     Restaurant(String restaurantName, String restaurantArea) {
         this.restaurantName = restaurantName;
@@ -15,6 +16,7 @@ public class Restaurant {
     }
 
     class Food {
+        final int foodId = IdGenerator.generateFoodId();
         final String foodName;
         final String foodType;
         final int foodPrice;
@@ -46,8 +48,8 @@ public class Restaurant {
         return restaurantArea;
     }
 
-    private Food checkFood(String foodName){
-        if(menu.containsKey(foodName)){
+    private Food getFood(String foodName) {
+        if (menu.containsKey(foodName)) {
             Food orderedFood = menu.get(foodName);
             return new Food(orderedFood.foodName, orderedFood.foodType,
                     orderedFood.foodPrice, orderedFood.preparingTime);
@@ -55,16 +57,30 @@ public class Restaurant {
         return null;
     }
 
-    void prepareOrder(String userName, String userAddress, ArrayList<ItemList> foodItemsList) {
+
+    void waitForPickup(ArrayList<Food> foodItems) {
+    }
+
+
+    void prepareOrder(String userName, String userAddress, ArrayList<FoodItemList> foodItemsList) {
         ArrayList<Food> foodItems = new ArrayList<>();
         Food food;
-        for(ItemList itemList : foodItemsList)
-        {   food = checkFood(itemList.foodName);
-            if(food != null){
+        boolean checkFood = true;
+        for (FoodItemList foodItemList : foodItemsList) {
+            food = getFood(foodItemList.foodName);
+            if (food != null) {
                 foodItems.add(food);
+            } else {
+                checkFood = false;
             }
-            else
         }
-        new Bill(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
+
+        if (checkFood) {
+            OrderHistory.add(new Bill(restaurantName,
+                    restaurantArea, userName, userAddress, foodItemsList));
+            waitForPickup(foodItems);
+
+        }
     }
+
 }

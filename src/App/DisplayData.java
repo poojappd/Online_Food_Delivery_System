@@ -7,9 +7,9 @@ public class DisplayData {
 
     void showRestaurants() {
         ArrayList<Restaurant> allRestaurants = database.fetchAllRestaurantData();
-        int restaurantIndex = 1;
+        int restaurantIndex;
         for (Restaurant currentRestaurant : allRestaurants) {
-
+            restaurantIndex = currentRestaurant.restaurantId;
             System.out.println(restaurantIndex + ". " +
                     currentRestaurant.getRestaurantName() + " \n" +
                     currentRestaurant.getRestaurantLocation());
@@ -17,10 +17,14 @@ public class DisplayData {
         }
     }
 
-    void showRestaurantMenu(String restaurantName){
+    void showRestaurantMenu(int chosenRestaurantId){
         //print the restaurant menu
 
 
+    }
+
+    void showUserCart(Cart currentUserCart){
+        //show user's Cart items;
     }
 
 

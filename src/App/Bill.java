@@ -11,7 +11,7 @@ public class Bill {
     String userName;
     String userAddress;
     int totalPrice;
-    ArrayList<ItemList> foodItemsList;
+    ArrayList<FoodItemList> foodItemsList;
     enum OrderStatus {
         CONFIRMED,
         CANCELLED,
@@ -23,7 +23,7 @@ public class Bill {
     }
 
     Bill(String restaurantName, String restaurantArea, String userName, String userAddress,
-            ArrayList<ItemList> foodItemsList) {
+            ArrayList<FoodItemList> foodItemsList) {
         this.restaurantName = restaurantName;
         this.restaurantArea = restaurantArea;
         this.userName = userName;
@@ -34,7 +34,7 @@ public class Bill {
 
     }
 
-    int findTotalPrice(ArrayList<ItemList> foodItemsList) {
+    int findTotalPrice(ArrayList<FoodItemList> foodItemsList) {
         totalPrice = 0;
 
         // iterate over the itemsList and increment totalPrice

@@ -7,7 +7,7 @@ public class DeliveryPartner {
     int deliveryPartnerAge;
     String currentArea;
     ArrayList<DeliveryPackage> deliveryPackages;
-    ArrayList<DeliveringAreas>;
+    ArrayList<DeliveringAreas> deliveringAreas;
 
     DeliveryPartner(String deliveryPartnerName, int deliveryPartnerAge){
         this.deliveryPartnerName = deliveryPartnerName;

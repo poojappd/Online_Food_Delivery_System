@@ -103,4 +103,19 @@ public class Database {
         }
     }
 
+    String getRestaurantName(int restaurantId){
+        //return restaurantName
+        return "";
+    }
+    String getRestaurantArea(int restaurantId){
+        //return restaurantName
+        return "";
+    }
+
+   String getFoodName(int foodId, int chosenRestaurantId){
+        //loop and return food Name
+
+
+    }
+
 }

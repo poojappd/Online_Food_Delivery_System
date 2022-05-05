@@ -6,24 +6,34 @@ public class IdGenerator {
     static int bill_Id = 1;
     static HashMap<String, Integer> restaurantOrderIds;
 
-    int generateBillId() {
+    static int generateBillId() {
 
     }
 
-    int generateRestaurantOrderId(String restaurantName){
+    static int generateRestaurantId(){
+        return 3;
+    }
+    static int generateFoodId(){
+        return 8;
+    }
+
+    static int generateRestaurantOrderId(String restaurantName){
         //temporary int orderId
         int orderId;
         if (restaurantOrderIds.containsKey(restaurantName)){
             orderId = restaurantOrderIds.get(restaurantName);
-            restaurantOrderIds.put(restaurntName, orderId++);
+            restaurantOrderIds.put(restaurantName, orderId++);
             
         }
         else{
             orderId = 1;
             restaurantOrderIds.put(restaurantName, orderId);
         }
-    return orderId;
+
+        return orderId;
     }
 
-    int generate(){}
+    static int generateDeliveryId(){
+        return 1;
+    }
 }

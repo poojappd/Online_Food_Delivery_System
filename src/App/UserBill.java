@@ -7,7 +7,7 @@ public class UserBill extends Bill {
     int offerReductionAmount;
 
     UserBill(String restaurantName, String restaurantArea, String userName, String userAddress,
-            ArrayList<ItemList> foodItemsList, int deliveryCharges) {
+             ArrayList<FoodItemList> foodItemsList, int deliveryCharges) {
         super(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
         this.deliveryCharges = deliveryCharges;
         this.totalPrice -= offerReductionAmount + deliveryCharges;

@@ -1,10 +1,11 @@
 package App;
 
-public class Mapper {
-    Database database = Database.instantiateOnce();
+import org.w3c.dom.CDATASection;
 
-    static String getRestaurantName(int restaurantId){
+import java.util.HashMap;
 
-    }
+class Mapper {
+    private static Database database = Database.instantiateOnce();
+
 
 }

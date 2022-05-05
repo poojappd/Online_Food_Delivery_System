@@ -5,6 +5,7 @@ public class UserApp {
     private Database database = Database.instantiateOnce();
     private Cart currentUserCart;
     private DisplayData display = new DisplayData();
+    int chosenRestaurantId;
 
     private void goToLoginPage(String loginType) {
         String userName = "";
@@ -30,17 +31,31 @@ public class UserApp {
 
     private void goToHomepage() {
         display.showRestaurants();
+
         // waiting for user to pick a restaurant
-        // if user pick a restaurant
-        int chosenRestaurantId = 0;
+        // if user pick a restaurant and if cart is empty
+        // else user will be prompted whether to remove the cart items
+        chosenRestaurantId = 0;
+        display.showRestaurantMenu(chosenRestaurantId);
 
-        display.showRestaurantMenu();
+        //if user clicks on any food - add it to cart
+        //this loops until user stops adding to cart
+        currentUserCart.addItems("");
 
+        //setting the restaurant name of the food items chosen
+        currentUserCart.setRestaurantData(database.getRestaurantName(chosenRestaurantId),
+                database.getRestaurantArea(chosenRestaurantId));
 
     }
 
     private void goToCart() {
+        //if cart not null
+        display.showUserCart(currentUserCart);
 
+        //if user wants to modify cart:
+        currentUserCart.changeQuantity("",1);
+        currentUserCart.removeItems("");
+        currentUserCart.emptyCart();
     }
 
     private void goToProfile() {
@@ -50,12 +65,13 @@ public class UserApp {
     void callerMethod() {
         goToLoginPage("login");
         if (currentAppUser != null) {
-            // if existing user, load their pre-saved cart
+            // load their pre-saved cart
             currentUserCart = currentAppUser.getCart();
             // else create a new Cart
 
             goToHomepage();
         }
+
         // user chooses the below options
         goToCart();
         goToProfile();
