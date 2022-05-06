@@ -1,5 +1,5 @@
 package App;
-
+//aggregation , hashcode(), da  smtg??
 public class UserApp {
     private UserProfile currentAppUser;
     private Database database = Database.instantiateOnce();
