@@ -8,12 +8,14 @@ public class UserProfile {
     private char[] userPassword;
     private int[] pinCode;
     private Cart myCart;
+    private DiscountCoupon myCoupons;
 
     UserProfile(String userName, char[] userPassword, String userAddress, int[] pinCode) {
         this.userName = userName;
         this.userAddress = userAddress;
         this.pinCode = pinCode;
         this.userPassword = userPassword;
+        myCart = new Cart();
     }
 
     String getUserName() {
@@ -24,22 +26,28 @@ public class UserProfile {
         return userAddress;
     }
 
-    private void changeUserAddress(String newAddress, int[] pinCode) {
-        this.userAddress = newAddress;
-        this.pinCode = pinCode;
+    void changeUserAddress(String newAddress, int[] pinCode, char[] userPassword) {
+        if (validatePassword(userPassword)) {
+            this.userAddress = newAddress;
+            this.pinCode = pinCode;
+        }
     }
 
     boolean validatePassword(char[] userPassword) {
         return (Arrays.equals(this.userPassword, userPassword));
     }
 
-    // private
-    void setCart(Cart myCart) {
-        this.myCart = myCart;
+    Cart getCart(char[] userPassword) {
+        if (validatePassword(userPassword)) {
+            return myCart;
+        }
     }
 
-    Cart getCart() {
-        return myCart;
+    DiscountCoupon getDiscountCoupons(char[] userPassword){
+        if (validatePassword(userPassword)) {
+            return myCoupons;
+        }
+        return null;
     }
 
 }

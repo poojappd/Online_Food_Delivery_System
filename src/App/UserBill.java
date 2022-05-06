@@ -10,7 +10,19 @@ public class UserBill extends Bill {
              ArrayList<FoodItemList> foodItemsList, int deliveryCharges) {
         super(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
         this.deliveryCharges = deliveryCharges;
+
+    }
+
+    @Override
+    float setTotalPrice(ArrayList<FoodItemList> foodItemsList) {
         this.totalPrice -= offerReductionAmount + deliveryCharges;
+        return totalPrice;
+    }
+
+    static float calculateTotalPrice(ArrayList<FoodItemList> foodItemsList){
+        int totalAmount;
+        totalAmount = 0;
+        return totalAmount;
     }
 
 }

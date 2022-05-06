@@ -11,6 +11,7 @@ public class Cart {
     void setRestaurantData(String restaurantName, String restaurantArea) {
         this.restaurantArea = restaurantArea;
         this.restaurantName = restaurantName;
+
     }
 
     String[] getRestaurantData() {

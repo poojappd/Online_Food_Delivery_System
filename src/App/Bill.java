@@ -10,7 +10,7 @@ public class Bill {
     String restaurantArea;
     String userName;
     String userAddress;
-    int totalPrice;
+    float totalPrice;
     ArrayList<FoodItemList> foodItemsList;
     enum OrderStatus {
         CONFIRMED,
@@ -30,11 +30,11 @@ public class Bill {
         this.userAddress = userAddress;
         this.orderStatus = OrderStatus.CONFIRMED;
         this.foodItemsList = foodItemsList;
-        this.totalPrice = findTotalPrice(foodItemsList);
+        this.totalPrice = setTotalPrice(foodItemsList);
 
     }
 
-    int findTotalPrice(ArrayList<FoodItemList> foodItemsList) {
+    float setTotalPrice(ArrayList<FoodItemList> foodItemsList) {
         totalPrice = 0;
 
         // iterate over the itemsList and increment totalPrice

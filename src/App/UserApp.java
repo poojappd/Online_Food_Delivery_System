@@ -4,8 +4,13 @@ public class UserApp {
     private UserProfile currentAppUser;
     private Database database = Database.instantiateOnce();
     private Cart currentUserCart;
+    private DiscountCoupon currentUserCoupons;
+    private char[] currentUserPassword;
     private DisplayData display = new DisplayData();
-    int chosenRestaurantId;
+    private int chosenRestaurantId;
+    boolean couponApplied;
+
+
 
     private void goToLoginPage(String loginType) {
         String userName = "";
@@ -15,18 +20,21 @@ public class UserApp {
         if (loginType.equals("login")) {
             // get userName, password and fetch from db
             currentAppUser = database.getUserProfile(userName, userPassword);
+
         }
 
         // new user
         else {
+            //create new username, password and
             int[] pinCode = new int[6];
             String userAddress = "";
 
             // handlers for illegal inputs
+
             currentAppUser = new UserProfile(userName, userPassword, userAddress, pinCode);
             database.addUser(currentAppUser);
         }
-
+        currentUserPassword = userPassword;
     }
 
     private void goToHomepage() {
@@ -56,6 +64,15 @@ public class UserApp {
         currentUserCart.changeQuantity("",1);
         currentUserCart.removeItems("");
         currentUserCart.emptyCart();
+
+        //if user wants to place order
+        //only if cart not null
+        goToBookingPage();
+    }
+    private void goToBookingPage(){
+
+
+
     }
 
     private void goToProfile() {
@@ -66,7 +83,8 @@ public class UserApp {
         goToLoginPage("login");
         if (currentAppUser != null) {
             // load their pre-saved cart
-            currentUserCart = currentAppUser.getCart();
+            currentUserCart = currentAppUser.getCart(currentUserPassword);
+            currentUserCoupons = currentAppUser.getDiscountCoupons(currentUserPassword);
             // else create a new Cart
 
             goToHomepage();
