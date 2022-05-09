@@ -21,7 +21,7 @@ class DiscountCoupon {
         return true;
     }
     int applyCoupon(int totalAmount){
-        int netPrice;
+        int netPrice=0;
         //apply discount and return new price
 
         return netPrice;

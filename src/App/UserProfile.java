@@ -41,6 +41,7 @@ public class UserProfile {
         if (validatePassword(userPassword)) {
             return myCart;
         }
+        return null;
     }
 
     DiscountCoupon getDiscountCoupons(char[] userPassword){

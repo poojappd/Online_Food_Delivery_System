@@ -8,7 +8,7 @@ public class UserApp {
     private char[] currentUserPassword;
     private DisplayData display = new DisplayData();
     private int chosenRestaurantId;
-    boolean couponApplied;
+    private boolean couponApplied;
 
 
 
@@ -48,16 +48,18 @@ public class UserApp {
 
         //if user clicks on any food - add it to cart
         //this loops until user stops adding to cart
-        currentUserCart.addItems("");
+
+        currentUserCart.addItems("", 0 );
 
         //setting the restaurant name of the food items chosen
         currentUserCart.setRestaurantData(database.getRestaurantName(chosenRestaurantId),
-                database.getRestaurantArea(chosenRestaurantId));
+                database.getRestaurantArea(chosenRestaurantId),
+                currentUserCart.getRestaurantId());
 
     }
 
     private void goToCart() {
-        //if cart not null
+        //if cart not empty
         display.showUserCart(currentUserCart);
 
         //if user wants to modify cart:
@@ -70,7 +72,13 @@ public class UserApp {
         goToBookingPage();
     }
     private void goToBookingPage(){
+        String restaurantName = currentUserCart.getRestaurantData()[0],
+                restaurantArea = currentUserCart.getRestaurantData()[1];
 
+        Admin.handleUserOrders(currentAppUser.getUserName(),
+                currentAppUser.getUserAddress(), currentUserCart.getRestaurantId(),
+                currentUserCart.getCartItems()
+                );
 
 
     }

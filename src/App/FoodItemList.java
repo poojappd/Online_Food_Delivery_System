@@ -1,20 +1,18 @@
 package App;
 
 class FoodItemList {
-    int foodItemId;
+    //final int foodItemId;
     final String foodName;
     final int price;
-    final int quantity;
+    int quantity = 0;
 
-    FoodItemList(String foodName, int price, int quantity, int foodItemId){
+    FoodItemList(String foodName, int price){
         this.foodName = foodName;
         this.price = price;
-        this.quantity = quantity;
+        //this.foodItemId = IdGenerator.generateFoodId();
 
     }
 
-    void setFoodItemId(int foodItemId){
-        this.foodItemId = foodItemId;
-    }
+
 
 }

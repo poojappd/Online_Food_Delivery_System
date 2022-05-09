@@ -9,6 +9,7 @@ public class Restaurant {
     private final String restaurantArea;
     private final HashMap<String, Food> menu = new HashMap<>();
     private ArrayList<Bill> OrderHistory = new ArrayList<>();
+    private HashMap<String, ArrayList<Food>> waitingFoodPackages = new HashMap<>();
 
     Restaurant(String restaurantName, String restaurantArea) {
         this.restaurantName = restaurantName;
@@ -37,14 +38,14 @@ public class Restaurant {
 
     // Displays Food objects as Menu
     HashMap<String, Food> getMenu() {
-        return new HashMap(menu);
+        return new HashMap<>(menu);
     }
 
     String getRestaurantName() {
         return restaurantName;
     }
 
-    String getRestaurantLocation() {
+    String getRestaurantArea() {
         return restaurantArea;
     }
 
@@ -58,7 +59,11 @@ public class Restaurant {
     }
 
 
-    void waitForPickup(ArrayList<Food> foodItems) {
+    ArrayList<Food> deliveryPartnerPickup(String userName) {
+        ArrayList<Food> waitingPackage = waitingFoodPackages.get(userName);
+        waitingFoodPackages.remove(userName);
+        return waitingPackage;
+
     }
 
 
@@ -78,7 +83,7 @@ public class Restaurant {
         if (checkFood) {
             OrderHistory.add(new Bill(restaurantName,
                     restaurantArea, userName, userAddress, foodItemsList));
-            waitForPickup(foodItems);
+            waitingFoodPackages.put(userName, foodItems);
 
         }
     }

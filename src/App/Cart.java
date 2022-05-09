@@ -1,30 +1,36 @@
 package App;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cart {
+    private int restaurantId;
     private String restaurantName;
     private String restaurantArea;
-    private HashMap<String, Integer> cartItems;
+    private HashMap<String, FoodItemList> cartItems = new HashMap<>();
 
     // set restaurant name of the corresponding food items
-    void setRestaurantData(String restaurantName, String restaurantArea) {
+    void setRestaurantData(String restaurantName, String restaurantArea, int restaurantId) {
         this.restaurantArea = restaurantArea;
         this.restaurantName = restaurantName;
+        this.restaurantId = restaurantId;
 
     }
 
     String[] getRestaurantData() {
         return new String[] { restaurantName, restaurantArea };
     }
+    int getRestaurantId(){
+        return restaurantId;
+    }
 
-    void addItems(String foodName) {
+    void addItems(String foodName, int foodPrice) {
         Integer quantity;
         if (cartItems.containsKey(foodName)) {
-            quantity = cartItems.get(foodName);
-            cartItems.put(foodName, quantity + 1);
+            cartItems.get(foodName).quantity++;
+
         } else {
-            cartItems.put(foodName, 1);
+            cartItems.put(foodName, new FoodItemList(foodName, foodPrice));
         }
     }
 
@@ -35,8 +41,9 @@ public class Cart {
 
     // replace quantity of existing foods
     void changeQuantity(String foodName, int quantity) {
-        if (cartItems.containsKey(foodName)) {
-            cartItems.put(foodName, quantity);
+        FoodItemList list = cartItems.get(foodName);
+        if (list != null) {
+            list.quantity = quantity;
         }
     }
 
@@ -51,4 +58,7 @@ public class Cart {
         return restaurantName;
     }
 
+    HashMap<String, FoodItemList> getCartItems(){
+        return new HashMap<>(cartItems);
+    }
 }

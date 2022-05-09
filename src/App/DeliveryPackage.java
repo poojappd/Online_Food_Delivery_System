@@ -12,7 +12,7 @@ public class DeliveryPackage {
         this.userName = userName;
         this.userLocation = userLocation;
         this.foodItems = foodItems;
-        this.deliveryId = IdGenerator.generateDeliveryId();
+        this.deliveryId = IdGenerator.generateDeliveryPackageId();
     }
 
 }

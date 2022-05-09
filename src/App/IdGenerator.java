@@ -7,7 +7,7 @@ public class IdGenerator {
     static HashMap<String, Integer> restaurantOrderIds;
 
     static int generateBillId() {
-
+        return 0;
     }
 
     static int generateRestaurantId(){
@@ -33,7 +33,11 @@ public class IdGenerator {
         return orderId;
     }
 
-    static int generateDeliveryId(){
+    static int generateDeliveryPartnerId(){
+        return 2;
+    }
+
+    static int generateDeliveryPackageId(){
         return 1;
     }
 }

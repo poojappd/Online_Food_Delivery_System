@@ -1,20 +1,20 @@
 package App;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DisplayData {
     private final Database database = Database.instantiateOnce();
 
     void showRestaurants() {
-        ArrayList<Restaurant> allRestaurants = database.fetchAllRestaurantData();
+        HashMap<Integer, Restaurant> allRestaurants = database.fetchAllRestaurantData();
         int restaurantIndex;
-        for (Restaurant currentRestaurant : allRestaurants) {
-            restaurantIndex = currentRestaurant.restaurantId;
-            System.out.println(restaurantIndex + ". " +
-                    currentRestaurant.getRestaurantName() + " \n" +
-                    currentRestaurant.getRestaurantLocation());
 
-        }
+        allRestaurants.forEach((key, currentRestaurant) -> {
+            System.out.println(currentRestaurant.restaurantId + ". " +
+                    currentRestaurant.getRestaurantName() + " \n" +
+                    currentRestaurant.getRestaurantArea());
+
+        });
     }
 
     void showRestaurantMenu(int chosenRestaurantId){
@@ -26,6 +26,7 @@ public class DisplayData {
     void showUserCart(Cart currentUserCart){
         //show user's Cart items;
     }
+
 
 
 }

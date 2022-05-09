@@ -3,20 +3,21 @@ package App;
 import java.util.ArrayList;
 
 public class UserBill extends Bill {
-    int deliveryCharges;
-    int offerReductionAmount;
+    private int deliveryCharges;
+    private int offerReductionAmount;
 
     UserBill(String restaurantName, String restaurantArea, String userName, String userAddress,
              ArrayList<FoodItemList> foodItemsList, int deliveryCharges) {
         super(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
         this.deliveryCharges = deliveryCharges;
+        setTotalPrice(foodItemsList);
 
     }
 
     @Override
-    float setTotalPrice(ArrayList<FoodItemList> foodItemsList) {
-        this.totalPrice -= offerReductionAmount + deliveryCharges;
-        return totalPrice;
+    void setTotalPrice(ArrayList<FoodItemList> foodItemsList) {
+        totalPrice = this.totalPrice - offerReductionAmount + deliveryCharges;
+
     }
 
     static float calculateTotalPrice(ArrayList<FoodItemList> foodItemsList){
