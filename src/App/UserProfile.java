@@ -3,7 +3,7 @@ package App;
 import java.util.Arrays;
 
 public class UserProfile {
-    private final String userName;
+    private String userName;
     private String userAddress;
     private char[] userPassword;
     private int[] pinCode;

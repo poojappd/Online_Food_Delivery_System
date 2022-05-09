@@ -87,7 +87,7 @@ public class UserApp {
 
     }
 
-    void callerMethod() {
+    public void callerMethod() {
         goToLoginPage("login");
         if (currentAppUser != null) {
             // load their pre-saved cart

@@ -12,7 +12,7 @@ public class Admin {
     private static Admin one_Admin = null;
 
     // Single Object for MainAdmin
-    static Admin instantiateOnce() {
+    public static Admin instantiateOnce() {
         if (one_Admin == null) {
             one_Admin = new Admin();
         }
@@ -66,7 +66,7 @@ public class Admin {
 
     }
 
-    void AdminApp() {
+    public void AdminApp() {
         if(checkAdminPassword()) {
             // get admin input in loop until exit
 
