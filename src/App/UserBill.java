@@ -3,11 +3,11 @@ package App;
 import java.util.ArrayList;
 
 public class UserBill extends Bill {
-    private int deliveryCharges;
+    private float deliveryCharges;
     private int offerReductionAmount;
 
     UserBill(String restaurantName, String restaurantArea, String userName, String userArea,
-             ArrayList<FoodItemList> foodItemsList, int deliveryCharges) {
+             ArrayList<FoodItemList> foodItemsList, float deliveryCharges) {
         super(restaurantName, restaurantArea, userName, userArea, foodItemsList);
         this.deliveryCharges = deliveryCharges;
         setTotalPrice(foodItemsList);

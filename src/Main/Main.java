@@ -1,6 +1,7 @@
 package Main;
 
 import App.Admin;
+import App.Bill;
 import App.UserApp;
 
 public class Main {
@@ -12,8 +13,6 @@ public class Main {
 
     public static void main(String[] args) {
         Admin admin = Admin.instantiateOnce();
-
-
         admin.AdminApp();
         UserApp userApp = new UserApp();
         userApp.callerMethod();

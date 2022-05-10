@@ -23,9 +23,7 @@ public class Admin {
 
     private boolean checkAdminPassword(){
         String somePassword = "Admin@123";
-        if (Arrays.equals(somePassword.toCharArray(), adminPassword))
-            return true;
-        return false;
+        return Arrays.equals(somePassword.toCharArray(), adminPassword);
     }
 
 
@@ -63,7 +61,7 @@ public class Admin {
 
         Restaurant restaurant = database.fetchRestaurant(restaurantId);
         restaurant.prepareOrder(userName, userArea,
-                new ArrayList<FoodItemList>(foodItemList.values()));
+                new ArrayList<>(foodItemList.values()));
 
         assignDeliveryPartner(userName, userArea, restaurant);
 
@@ -91,7 +89,6 @@ public class Admin {
             dp1.addDeliveringAreas("Pammal");
             dp1.addDeliveringAreas("Chromepet");
 
-            DeliveryPartner dp2 = createDeliveryPartner("Suresh", 30);
             dp1.addDeliveringAreas("Tambaram");
             dp1.addDeliveringAreas("Medavakkam");
             dp1.addDeliveringAreas("Chromepet");

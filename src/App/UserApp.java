@@ -1,5 +1,7 @@
 package App;
-//aggregation , hashcode(), da  smtg??
+
+import java.util.ArrayList;
+
 public class UserApp {
     private UserProfile currentAppUser;
     private Database database = Database.instantiateOnce();
@@ -72,6 +74,7 @@ public class UserApp {
         goToBookingPage();
     }
     private void goToBookingPage(){
+        float deliveryCharges = 0;
         String restaurantName = currentUserCart.getRestaurantData()[0],
                 restaurantArea = currentUserCart.getRestaurantData()[1];
 
@@ -80,7 +83,8 @@ public class UserApp {
                 currentUserCart.getCartItems()
                 );
         UserBill newBill = new UserBill(restaurantName, restaurantArea, currentAppUser.getUserName(),
-                currentAppUser.getUserArea(), currentUserCart.getCartItems(), deliveryCharges );
+                currentAppUser.getUserArea(), new ArrayList<>(currentUserCart.getCartItems().values()),
+                deliveryCharges );
 
 
     }
