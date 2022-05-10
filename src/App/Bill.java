@@ -9,23 +9,23 @@ public class Bill {
     final String restaurantName;
     final String restaurantArea;
     final String userName;
-    final String userAddress;
+    final String userArea;
     float totalPrice;
     ArrayList<FoodItemList> foodItemsList;
     enum OrderStatus {
         CONFIRMED,
-        CANCELLED,
+        CANCELLED
     }
 
     OrderStatus orderStatus;
 
-    Bill(String restaurantName, String restaurantArea, String userName, String userAddress,
+    Bill(String restaurantName, String restaurantArea, String userName, String userArea,
             ArrayList<FoodItemList> foodItemsList) {
         this.billId = IdGenerator.generateBillId();
         this.restaurantName = restaurantName;
         this.restaurantArea = restaurantArea;
         this.userName = userName;
-        this.userAddress = userAddress;
+        this.userArea = userArea;
         this.orderStatus = OrderStatus.CONFIRMED;
         this.foodItemsList = foodItemsList;
         setTotalPrice(foodItemsList);

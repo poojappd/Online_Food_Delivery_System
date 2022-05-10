@@ -27,11 +27,11 @@ public class UserApp {
         else {
             //create new username, password and
             int[] pinCode = new int[6];
-            String userAddress = "";
+            String userArea = "";
 
             // handlers for illegal inputs
 
-            currentAppUser = new UserProfile(userName, userPassword, userAddress, pinCode);
+            currentAppUser = new UserProfile(userName, userPassword, userArea, pinCode);
             database.addUser(currentAppUser);
         }
         currentUserPassword = userPassword;
@@ -76,9 +76,11 @@ public class UserApp {
                 restaurantArea = currentUserCart.getRestaurantData()[1];
 
         Admin.handleUserOrders(currentAppUser.getUserName(),
-                currentAppUser.getUserAddress(), currentUserCart.getRestaurantId(),
+                currentAppUser.getUserArea(), currentUserCart.getRestaurantId(),
                 currentUserCart.getCartItems()
                 );
+        UserBill newBill = new UserBill(restaurantName, restaurantArea, currentAppUser.getUserName(),
+                currentAppUser.getUserArea(), currentUserCart.getCartItems(), deliveryCharges );
 
 
     }

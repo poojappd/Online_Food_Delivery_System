@@ -35,6 +35,8 @@ public class Database {
 
     private void addDeliveringArea(String deliveringArea) {
         // String
+        deliveringAreas.add(deliveringArea);
+        activeDeliveryPartners.put(deliveringArea, new ArrayList<>());
     }
 
     private void addDeliveryPartner(@NotNull DeliveryPartner newDeliveryPartner) {

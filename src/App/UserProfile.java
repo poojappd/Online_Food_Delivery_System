@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 public class UserProfile {
     private String userName;
-    private String userAddress;
+    private String userArea;
     private char[] userPassword;
     private int[] pinCode;
     private Cart myCart;
     private DiscountCoupon myCoupons;
 
-    UserProfile(String userName, char[] userPassword, String userAddress, int[] pinCode) {
+    UserProfile(String userName, char[] userPassword, String userArea, int[] pinCode) {
         this.userName = userName;
-        this.userAddress = userAddress;
+        this.userArea = userArea;
         this.pinCode = pinCode;
         this.userPassword = userPassword;
         myCart = new Cart();
@@ -22,13 +22,13 @@ public class UserProfile {
         return userName;
     }
 
-    String getUserAddress() {
-        return userAddress;
+    String getUserArea() {
+        return userArea;
     }
 
-    void changeUserAddress(String newAddress, int[] pinCode, char[] userPassword) {
+    void changeUserArea(String newArea, int[] pinCode, char[] userPassword) {
         if (validatePassword(userPassword)) {
-            this.userAddress = newAddress;
+            this.userArea = newArea;
             this.pinCode = pinCode;
         }
     }

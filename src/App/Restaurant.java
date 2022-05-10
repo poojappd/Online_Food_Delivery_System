@@ -67,7 +67,7 @@ public class Restaurant {
     }
 
 
-    void prepareOrder(String userName, String userAddress, ArrayList<FoodItemList> foodItemsList) {
+    void prepareOrder(String userName, String userArea, ArrayList<FoodItemList> foodItemsList) {
         ArrayList<Food> foodItems = new ArrayList<>();
         Food food;
         boolean checkFood = true;
@@ -77,14 +77,19 @@ public class Restaurant {
                 foodItems.add(food);
             } else {
                 checkFood = false;
+                break;
             }
         }
 
         if (checkFood) {
             OrderHistory.add(new Bill(restaurantName,
-                    restaurantArea, userName, userAddress, foodItemsList));
+                    restaurantArea, userName, userArea, foodItemsList));
             waitingFoodPackages.put(userName, foodItems);
 
+        }
+
+        else{
+            //some error occurred;
         }
     }
 

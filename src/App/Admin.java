@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Admin {
     private static Database database = Database.instantiateOnce();
-    private char[] adminPassword = "Admin@123".toCharArray();
+    private final char[] adminPassword = EncryptDecrypt.encrypt("Admin@123");
 
     // to create a singleton class for Admin
     private static Admin one_Admin = null;
@@ -43,12 +43,16 @@ public class Admin {
         return newDeliveryPartner;
     }
 
-    private static void assignDeliveryPartner(String userName, String userAddress,
-                                              String restaurantName, String restaurantArea) {
+    private static void assignDeliveryPartner(String userName, String userArea,
+                                              Restaurant restaurant) {
         // find the nearest delivery partner and call them
-        ArrayList<Integer> activeDeliveryPartnerIds = database.fetchActiveDeliveryPartners(userAddress);
+        ArrayList<Integer> activeDeliveryPartnerIds = database.fetchActiveDeliveryPartners(userArea);
+
         if(!activeDeliveryPartnerIds.isEmpty()){
-            int deliveryPartnerId =
+            //assigning random dp nearby restaurant's location
+            int deliveryPartnerId = (int)((Math.random() * 10) % activeDeliveryPartnerIds.size());
+            DeliveryPartner chosenDeliveryPartner = database.fetchDeliveryPartner(deliveryPartnerId);
+            chosenDeliveryPartner.pickupOrder(restaurant, userName, userArea);
         }
 
     }
@@ -61,8 +65,7 @@ public class Admin {
         restaurant.prepareOrder(userName, userArea,
                 new ArrayList<FoodItemList>(foodItemList.values()));
 
-        assignDeliveryPartner(userName, userArea, restaurant.getRestaurantName(),
-                restaurant.getRestaurantArea());
+        assignDeliveryPartner(userName, userArea, restaurant);
 
     }
 

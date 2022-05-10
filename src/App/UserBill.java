@@ -6,9 +6,9 @@ public class UserBill extends Bill {
     private int deliveryCharges;
     private int offerReductionAmount;
 
-    UserBill(String restaurantName, String restaurantArea, String userName, String userAddress,
+    UserBill(String restaurantName, String restaurantArea, String userName, String userArea,
              ArrayList<FoodItemList> foodItemsList, int deliveryCharges) {
-        super(restaurantName, restaurantArea, userName, userAddress, foodItemsList);
+        super(restaurantName, restaurantArea, userName, userArea, foodItemsList);
         this.deliveryCharges = deliveryCharges;
         setTotalPrice(foodItemsList);
 
@@ -18,6 +18,10 @@ public class UserBill extends Bill {
     void setTotalPrice(ArrayList<FoodItemList> foodItemsList) {
         totalPrice = this.totalPrice - offerReductionAmount + deliveryCharges;
 
+    }
+
+    int calculateDeliveryCharge(){
+        return 0;
     }
 
     static float calculateTotalPrice(ArrayList<FoodItemList> foodItemsList){

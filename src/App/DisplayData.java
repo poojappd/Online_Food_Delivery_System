@@ -27,6 +27,9 @@ public class DisplayData {
         //show user's Cart items;
     }
 
+    void showUserProfile(){
+
+    }
 
 
 }
