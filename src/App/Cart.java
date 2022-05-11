@@ -3,7 +3,7 @@ package App;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class Cart {
+public class Cart {
     private int restaurantId;
     private String restaurantName;
     private String restaurantArea;
@@ -57,7 +57,9 @@ class Cart {
     String getRestaurantName(){
         return restaurantName;
     }
-
+    //TODO here cart is passed by reference and this
+    // method is public
+    // check
     HashMap<String, FoodItemList> getCartItems(){
         return new HashMap<>(cartItems);
     }

@@ -1,7 +1,6 @@
 package Main;
 
 import App.Admin;
-import App.UserApp;
 
 public class Main {
     enum UserType {
