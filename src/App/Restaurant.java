@@ -3,7 +3,7 @@ package App;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Restaurant {
+class Restaurant {
     final int restaurantId = IdGenerator.generateRestaurantId();
     private final String restaurantName;
     private final String restaurantArea;
@@ -32,7 +32,7 @@ public class Restaurant {
     }
 
     // admin
-    private void addFoods(String foodName, String foodType, int foodPrice, int preparingTime) {
+    void addFoods(String foodName, String foodType, int foodPrice, int preparingTime) {
         menu.put(foodName, new Food(foodName, foodType, foodPrice, preparingTime));
     }
 

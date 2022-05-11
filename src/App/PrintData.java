@@ -1,11 +1,12 @@
 package App;
 
+
 import java.util.HashMap;
 
-public class DisplayData {
-    private final Database database = Database.instantiateOnce();
+class PrintData {
+    private static final Database database = Database.instantiateOnce();
 
-    void showRestaurants() {
+    static void showRestaurants() {
         HashMap<Integer, Restaurant> allRestaurants = database.fetchAllRestaurantData();
         int restaurantIndex;
 
@@ -17,17 +18,21 @@ public class DisplayData {
         });
     }
 
-    void showRestaurantMenu(int chosenRestaurantId){
+    static void showRestaurantMenu(int chosenRestaurantId){
         //print the restaurant menu
 
 
     }
 
-    void showUserCart(Cart currentUserCart){
+    static void showUserCart(Cart currentUserCart){
         //show user's Cart items;
     }
 
-    void showUserProfile(){
+    static void showUserProfile(UserProfile user){
+        //Print user data
+    }
+
+    static void showUserCoupons(UserProfile user){
 
     }
 

@@ -2,15 +2,15 @@ package App;
 
 import java.util.Arrays;
 
-public class UserProfile {
+class UserProfile {
     private String userName;
     private String userArea;
     private char[] userPassword;
-    private int[] pinCode;
+    private int pinCode;
     private Cart myCart;
     private DiscountCoupon myCoupons;
 
-    UserProfile(String userName, char[] userPassword, String userArea, int[] pinCode) {
+    UserProfile(String userName, char[] userPassword, String userArea, int pinCode) {
         this.userName = userName;
         this.userArea = userArea;
         this.pinCode = pinCode;
@@ -18,7 +18,7 @@ public class UserProfile {
         myCart = new Cart();
     }
 
-    String getUserName() {
+    public String getUserName() {
         return userName;
     }
 
@@ -26,14 +26,16 @@ public class UserProfile {
         return userArea;
     }
 
-    void changeUserArea(String newArea, int[] pinCode, char[] userPassword) {
+
+
+    void changeUserArea(String newArea, int pinCode, char[] userPassword) {
         if (validatePassword(userPassword)) {
             this.userArea = newArea;
             this.pinCode = pinCode;
         }
     }
 
-    boolean validatePassword(char[] userPassword) {
+    public boolean validatePassword(char[] userPassword) {
         return (Arrays.equals(this.userPassword, userPassword));
     }
 

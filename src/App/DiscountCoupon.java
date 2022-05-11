@@ -5,15 +5,21 @@ import java.util.Calendar;
 import java.util.Date;
 
 class DiscountCoupon {
-    private enum status{
+
+    enum CouponStatus{
         ACTIVE,
         EXPIRED
     }
-    private status couponStatus;
+    private CouponStatus couponStatus;
     private int minimumOrderPrice;
     private float discountPercent;
     private Calendar offerValidity;
 
+    DiscountCoupon(){
+        this.couponStatus = CouponStatus.ACTIVE;
+
+
+    }
     boolean checkCouponApplicable(){
         //if current dateTime is within the validity;
         //and if it exceeds minimumOrderPrice
@@ -26,4 +32,8 @@ class DiscountCoupon {
 
         return netPrice;
     }
+    CouponStatus getCouponStatus(){
+        return couponStatus;
+    }
+
 }

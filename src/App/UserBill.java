@@ -2,7 +2,7 @@ package App;
 
 import java.util.ArrayList;
 
-public class UserBill extends Bill {
+class UserBill extends Bill {
     private float deliveryCharges;
     private int offerReductionAmount;
 

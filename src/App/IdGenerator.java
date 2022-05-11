@@ -2,7 +2,7 @@ package App;
 
 import java.util.HashMap;
 
-public class IdGenerator {
+class IdGenerator {
     static int bill_Id = 1;
     static HashMap<String, Integer> restaurantOrderIds;
 

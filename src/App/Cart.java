@@ -3,7 +3,7 @@ package App;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Cart {
+class Cart {
     private int restaurantId;
     private String restaurantName;
     private String restaurantArea;

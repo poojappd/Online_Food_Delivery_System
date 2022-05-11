@@ -1,6 +1,7 @@
 package App;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UserApp {
     private UserProfile currentAppUser;
@@ -8,15 +9,17 @@ public class UserApp {
     private Cart currentUserCart;
     private DiscountCoupon currentUserCoupons;
     private char[] currentUserPassword;
-    private DisplayData display = new DisplayData();
     private int chosenRestaurantId;
     private boolean couponApplied;
 
 
 
-    private void goToLoginPage(String loginType) {
+
+    private void goToLoginPage() {
+        String loginType = "login"; //login or signup
         String userName = "";
         char[] userPassword = {};
+
 
         // existing user
         if (loginType.equals("login")) {
@@ -28,7 +31,7 @@ public class UserApp {
         // new user
         else {
             //create new username, password and
-            int[] pinCode = new int[6];
+            int pinCode = 0;
             String userArea = "";
 
             // handlers for illegal inputs
@@ -40,13 +43,13 @@ public class UserApp {
     }
 
     private void goToHomepage() {
-        display.showRestaurants();
+        PrintData.showRestaurants();
 
         // waiting for user to pick a restaurant
         // if user pick a restaurant and if cart is empty
         // else user will be prompted whether to remove the cart items
         chosenRestaurantId = 0;
-        display.showRestaurantMenu(chosenRestaurantId);
+        PrintData.showRestaurantMenu(chosenRestaurantId);
 
         //if user clicks on any food - add it to cart
         //this loops until user stops adding to cart
@@ -62,7 +65,7 @@ public class UserApp {
 
     private void goToCart() {
         //if cart not empty
-        display.showUserCart(currentUserCart);
+        PrintData.showUserCart(currentUserCart);
 
         //if user wants to modify cart:
         currentUserCart.changeQuantity("",1);
@@ -90,23 +93,31 @@ public class UserApp {
     }
 
     private void goToProfile() {
-
+        PrintData.showUserProfile(currentAppUser);
     }
 
-    public void callerMethod() {
-        goToLoginPage("login");
+    public void launchApp() {
+        goToLoginPage(); //get userProfile object
         if (currentAppUser != null) {
+
             // load their pre-saved cart
             currentUserCart = currentAppUser.getCart(currentUserPassword);
             currentUserCoupons = currentAppUser.getDiscountCoupons(currentUserPassword);
             // else create a new Cart
 
             goToHomepage();
-        }
 
-        // user chooses the below options
-        goToCart();
-        goToProfile();
+            // user chooses the below options
+            int navigateTo = 2;
+            switch (navigateTo){
+                case 1 -> goToCart();
+                case 2 -> goToProfile();
+                case 3 -> goToHomepage();
+                default -> System.out.println("Invalid option");
+            }
+            }
+
+            goToProfile();
 
     }
 

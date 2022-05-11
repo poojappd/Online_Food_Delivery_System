@@ -2,13 +2,13 @@ package App;
 
 import java.util.ArrayList;
 
-public class DeliveryPartner {
+class DeliveryPartner {
     private int deliveryPartnerId;
     private String deliveryPartnerName;
     private int deliveryPartnerAge;
     private String currentArea;
     private ArrayList<DeliveryPackage> deliveryPackages;
-    private ArrayList<String> deliveringAreas;
+    private ArrayList<String> deliveringAreas = new ArrayList<>();
 
     DeliveryPartner(String deliveryPartnerName, int deliveryPartnerAge){
         this.deliveryPartnerName = deliveryPartnerName;

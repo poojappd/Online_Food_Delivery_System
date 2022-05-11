@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 
-public class Bill {
+class Bill {
     final int billId;
     final String restaurantName;
     final String restaurantArea;

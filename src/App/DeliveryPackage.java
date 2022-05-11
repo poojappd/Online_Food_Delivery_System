@@ -2,7 +2,7 @@ package App;
 
 import java.util.ArrayList;
 
-public class DeliveryPackage {
+class DeliveryPackage {
     String userName;
     String userLocation;
     int deliveryId;
