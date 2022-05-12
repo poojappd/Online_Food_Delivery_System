@@ -1,5 +1,7 @@
 package App;
 
+import App.FoodItemList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,24 +12,25 @@ public class Cart {
     private HashMap<String, FoodItemList> cartItems = new HashMap<>();
 
     // set restaurant name of the corresponding food items
-    void setRestaurantData(String restaurantName, String restaurantArea, int restaurantId) {
+    public void setRestaurantData(String restaurantName, String restaurantArea, int restaurantId) {
         this.restaurantArea = restaurantArea;
         this.restaurantName = restaurantName;
         this.restaurantId = restaurantId;
 
     }
 
-    String[] getRestaurantData() {
+    private String[] getRestaurantData() {
         return new String[] { restaurantName, restaurantArea };
     }
-    int getRestaurantId(){
+    public int getRestaurantId(){
         return restaurantId;
     }
 
-    void addItems(String foodName, int foodPrice) {
-        Integer quantity;
+    public void addItems(String foodName, int foodPrice) {
+        int quantity;
         if (cartItems.containsKey(foodName)) {
-            cartItems.get(foodName).quantity++;
+            quantity = cartItems.get(foodName).getQuantity();
+            cartItems.get(foodName).setQuantity(quantity++);
 
         } else {
             cartItems.put(foodName, new FoodItemList(foodName, foodPrice));
@@ -35,28 +38,33 @@ public class Cart {
     }
 
     // remove the food object
-    void removeItems(String foodName) {
+    public void removeItems(String foodName) {
             cartItems.remove(foodName);
     }
 
     // replace quantity of existing foods
-    void changeQuantity(String foodName, int quantity) {
+    public void changeQuantity(String foodName, int quantity) {
         FoodItemList list = cartItems.get(foodName);
         if (list != null) {
-            list.quantity = quantity;
+            list.setQuantity(quantity);
         }
     }
 
     // remove all food objects
-    void emptyCart() {
+    public void emptyCart() {
         cartItems.clear();
         restaurantName = null;
         restaurantArea = null;
     }
 
-    String getRestaurantName(){
+    public String getRestaurantName(){
         return restaurantName;
     }
+
+    public String getRestaurantArea(){
+        return restaurantArea;
+    }
+
     //TODO here cart is passed by reference and this
     // method is public
     // check

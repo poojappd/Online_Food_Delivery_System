@@ -2,22 +2,22 @@ package App;
 
 import java.util.HashMap;
 
-class IdGenerator {
+public class IdGenerator {
     static int bill_Id = 1;
     static HashMap<String, Integer> restaurantOrderIds;
 
-    static int generateBillId() {
+    public static int generateBillId() {
         return 0;
     }
 
-    static int generateRestaurantId(){
+    public static int generateRestaurantId(){
         return 3;
     }
-    static int generateFoodId(){
+    public static int generateFoodId(){
         return 8;
     }
 
-    static int generateRestaurantOrderId(String restaurantName){
+    public static int generateRestaurantOrderId(String restaurantName){
         //temporary int orderId
         int orderId;
         if (restaurantOrderIds.containsKey(restaurantName)){
@@ -33,11 +33,11 @@ class IdGenerator {
         return orderId;
     }
 
-    static int generateDeliveryPartnerId(){
+    public static int generateDeliveryPartnerId(){
         return 2;
     }
 
-    static int generateDeliveryPackageId(){
+    public static int generateDeliveryPackageId(){
         return 1;
     }
 }

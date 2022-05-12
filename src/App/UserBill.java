@@ -2,11 +2,11 @@ package App;
 
 import java.util.ArrayList;
 
-class UserBill extends Bill {
+public class UserBill extends Bill {
     private float deliveryCharges;
     private int offerReductionAmount;
 
-    UserBill(String restaurantName, String restaurantArea, String userName, String userArea,
+    public UserBill(String restaurantName, String restaurantArea, String userName, String userArea,
              ArrayList<FoodItemList> foodItemsList, float deliveryCharges) {
         super(restaurantName, restaurantArea, userName, userArea, foodItemsList);
         this.deliveryCharges = deliveryCharges;
@@ -15,7 +15,7 @@ class UserBill extends Bill {
     }
 
     @Override
-    void setTotalPrice(ArrayList<FoodItemList> foodItemsList) {
+    public void setTotalPrice(ArrayList<FoodItemList> foodItemsList) {
         totalPrice = this.totalPrice - offerReductionAmount + deliveryCharges;
 
     }

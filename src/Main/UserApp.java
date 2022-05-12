@@ -3,10 +3,9 @@ package Main;
 import App.*;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserApp {
-    private UserProfile currentAppUser;
+    private User currentAppUser;
     private Database database = Database.instantiateOnce();
     private Cart currentUserCart;
     private DiscountCoupon currentUserCoupons;
@@ -16,18 +15,15 @@ public class UserApp {
 
 
 
-
     private void goToLoginPage() {
         String loginType = "login"; //login or signup
         String userName = "";
         char[] userPassword = {};
 
-
         // existing user
         if (loginType.equals("login")) {
             // get userName, password and fetch from db
             currentAppUser = database.getUserProfile(userName, userPassword);
-
         }
 
         // new user
@@ -38,7 +34,7 @@ public class UserApp {
 
             // handlers for illegal inputs
 
-            currentAppUser = new UserProfile(userName, userPassword, userArea, pinCode);
+            currentAppUser = new User(userName, userPassword, userArea, pinCode);
             database.addUser(currentAppUser);
         }
         currentUserPassword = userPassword;
@@ -80,8 +76,8 @@ public class UserApp {
     }
     private void goToBookingPage(){
         float deliveryCharges = 0;
-        String restaurantName = currentUserCart.getRestaurantData()[0],
-                restaurantArea = currentUserCart.getRestaurantData()[1];
+        String restaurantName = currentUserCart.getRestaurantName(),
+                restaurantArea = currentUserCart.getRestaurantArea();
 
         Admin.handleUserOrders(currentAppUser.getUserName(),
                 currentAppUser.getUserArea(), currentUserCart.getRestaurantId(),

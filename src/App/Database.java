@@ -5,12 +5,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 
- class Database {
+ public class Database {
 
     private static Database database = null;
 
     // Singleton class
-    static Database instantiateOnce() {
+    public static Database instantiateOnce() {
         if (database == null) {
             database = new Database();
 
@@ -19,13 +19,13 @@ import java.util.HashMap;
     }
 
     // Data
-    private final HashMap<String, UserProfile> EndUsers = new HashMap<>();
+    private final HashMap<String, User> EndUsers = new HashMap<>();
     private final HashMap<Integer, Restaurant> allRestaurants = new HashMap<>();
     private final ArrayList<String> deliveringAreas = new ArrayList<>();
     private final HashMap<Integer, DeliveryPartner> deliveryPartners = new HashMap<>();
     private final HashMap<String, ArrayList<Integer>> activeDeliveryPartners = new HashMap<>();
 
-    void addUser(UserProfile newUser) {
+    void addUser(User newUser) {
         EndUsers.put(newUser.getUserName(), newUser);
     }
 
@@ -43,8 +43,8 @@ import java.util.HashMap;
         deliveryPartners.put(newDeliveryPartner.getDeliveryPartnerId(), newDeliveryPartner);
     }
 
-    UserProfile getUserProfile(String username, char[] password) {
-        UserProfile tempUser = EndUsers.get(username);
+    User getUserProfile(String username, char[] password) {
+        User tempUser = EndUsers.get(username);
         if (tempUser != null) {
             if (tempUser.validatePassword(password)) {
                 return tempUser;
@@ -73,6 +73,7 @@ import java.util.HashMap;
         return new HashMap<>(allRestaurants);
 
     }
+
     ArrayList<Integer> fetchActiveDeliveryPartners(String area){
         return activeDeliveryPartners.get(area);
     }
@@ -86,7 +87,7 @@ import java.util.HashMap;
         if(callerClassName.equals("App.Admin")){
 
             switch (methodName) {
-                case "addUser" -> addUser((UserProfile) parameter);
+                case "addUser" -> addUser((User) parameter);
                 case "addRestaurant" -> addRestaurant((Restaurant) parameter);
                 case "addDeliveringArea" -> addDeliveringArea((String) parameter);
                 case "addDeliveryPartner" -> addDeliveryPartner((DeliveryPartner) parameter);
@@ -97,18 +98,18 @@ import java.util.HashMap;
         return null;
     }
 
-    String getRestaurantName(int restaurantId){
+    public String getRestaurantName(int restaurantId){
         //return restaurantName
         return "";
     }
-    String getRestaurantArea(int restaurantId){
+    public String getRestaurantArea(int restaurantId){
         //return restaurantName
         return "";
     }
 
 
 
-   String getFoodName(int foodId, int chosenRestaurantId){
+   public String getFoodName(int foodId, int chosenRestaurantId){
         //loop and return food Name
 
         return "";

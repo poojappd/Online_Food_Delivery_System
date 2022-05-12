@@ -2,7 +2,7 @@ package App;
 
 import java.util.Arrays;
 
-class UserProfile {
+public class User {
     private String userName;
     private String userArea;
     private char[] userPassword;
@@ -10,7 +10,7 @@ class UserProfile {
     private Cart myCart;
     private DiscountCoupon myCoupons;
 
-    UserProfile(String userName, char[] userPassword, String userArea, int pinCode) {
+    public User(String userName, char[] userPassword, String userArea, int pinCode) {
         this.userName = userName;
         this.userArea = userArea;
         this.pinCode = pinCode;
@@ -22,7 +22,7 @@ class UserProfile {
         return userName;
     }
 
-    String getUserArea() {
+    public String getUserArea() {
         return userArea;
     }
 

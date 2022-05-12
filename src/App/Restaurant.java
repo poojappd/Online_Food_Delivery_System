@@ -72,7 +72,7 @@ class Restaurant {
         Food food;
         boolean checkFood = true;
         for (FoodItemList foodItemList : foodItemsList) {
-            food = getFood(foodItemList.foodName);
+            food = getFood(foodItemList.getFoodName());
             if (food != null) {
                 foodItems.add(food);
             } else {

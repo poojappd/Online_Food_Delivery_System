@@ -3,10 +3,10 @@ package App;
 
 import java.util.HashMap;
 
-class PrintData {
+public class PrintData {
     private static final Database database = Database.instantiateOnce();
 
-    static void showRestaurants() {
+    public static void showRestaurants() {
         HashMap<Integer, Restaurant> allRestaurants = database.fetchAllRestaurantData();
         int restaurantIndex;
 
@@ -18,21 +18,21 @@ class PrintData {
         });
     }
 
-    static void showRestaurantMenu(int chosenRestaurantId){
+    public static void showRestaurantMenu(int chosenRestaurantId){
         //print the restaurant menu
 
 
     }
 
-    static void showUserCart(Cart currentUserCart){
+    public static void showUserCart(Cart currentUserCart){
         //show user's Cart items;
     }
 
-    static void showUserProfile(UserProfile user){
+    public static void showUserProfile(User user){
         //Print user data
     }
 
-    static void showUserCoupons(UserProfile user){
+    public static void showUserCoupons(User user){
 
     }
 
