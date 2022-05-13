@@ -9,7 +9,6 @@ public class UserApp {
     private Database database = Database.instantiateOnce();
     private Cart currentUserCart;
     private DiscountCoupon currentUserCoupons;
-    private char[] currentUserPassword;
     private int chosenRestaurantId;
     private boolean couponApplied;
 
@@ -18,7 +17,7 @@ public class UserApp {
     private void goToLoginPage() {
         String loginType = "login"; //login or signup
         String userName = "";
-        char[] userPassword = {};
+        String userPassword = ""; //get username n password from user;
 
         // existing user
         if (loginType.equals("login")) {
@@ -31,13 +30,12 @@ public class UserApp {
             //create new username, password and
             int pinCode = 0;
             String userArea = "";
-
+            char[] encryptedPassword = EncryptDecrypt.encrypt(userPassword);
             // handlers for illegal inputs
 
-            currentAppUser = new User(userName, userPassword, userArea, pinCode);
-            database.addUser(currentAppUser);
+            currentAppUser = new User(userName, encryptedPassword, userArea, pinCode);
+            database.addUser(currentAppUser, encryptedPassword);
         }
-        currentUserPassword = userPassword;
     }
 
     private void goToHomepage() {
@@ -93,14 +91,17 @@ public class UserApp {
     private void goToProfile() {
         PrintData.showUserProfile(currentAppUser);
     }
+    private void goToOrders(){
+
+    }
 
     public void launchApp() {
-        goToLoginPage(); //get userProfile object
+        goToLoginPage(); //get user object
         if (currentAppUser != null) {
 
             // load their pre-saved cart
-            currentUserCart = currentAppUser.getCart(currentUserPassword);
-            currentUserCoupons = currentAppUser.getDiscountCoupons(currentUserPassword);
+            currentUserCart = currentAppUser.getUserCart();
+            currentUserCoupons = currentAppUser.getUserDiscountCoupons();
             // else create a new Cart
 
             goToHomepage();
@@ -111,6 +112,7 @@ public class UserApp {
                 case 1 -> goToCart();
                 case 2 -> goToProfile();
                 case 3 -> goToHomepage();
+                case 4 -> goToOrders();
                 default -> System.out.println("Invalid option");
             }
             }

@@ -3,6 +3,7 @@ package App;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
  public class Database {
@@ -20,13 +21,15 @@ import java.util.HashMap;
 
     // Data
     private final HashMap<String, User> EndUsers = new HashMap<>();
+    private final HashMap<String, char[]> userCredentials = new HashMap<>();
     private final HashMap<Integer, Restaurant> allRestaurants = new HashMap<>();
     private final ArrayList<String> deliveringAreas = new ArrayList<>();
     private final HashMap<Integer, DeliveryPartner> deliveryPartners = new HashMap<>();
     private final HashMap<String, ArrayList<Integer>> activeDeliveryPartners = new HashMap<>();
 
-    void addUser(User newUser) {
+    public void addUser(User newUser, char[] encryptedPassword) {
         EndUsers.put(newUser.getUserName(), newUser);
+        userCredentials.put(newUser.getUserName(), encryptedPassword);
     }
 
     private void addRestaurant(Restaurant newRestaurant) {
@@ -43,13 +46,12 @@ import java.util.HashMap;
         deliveryPartners.put(newDeliveryPartner.getDeliveryPartnerId(), newDeliveryPartner);
     }
 
-    User getUserProfile(String username, char[] password) {
-        User tempUser = EndUsers.get(username);
-        if (tempUser != null) {
-            if (tempUser.validatePassword(password)) {
-                return tempUser;
+    public User getUser(String username, String checkPassword) {
+        char[] actualPassword = EncryptDecrypt.decrypt(userCredentials.get(username));
+        if (Arrays.equals(actualPassword, checkPassword.toCharArray())) {
+                return EndUsers.get(username);
             }
-        }
+
         return null;
     }
 
@@ -87,7 +89,6 @@ import java.util.HashMap;
         if(callerClassName.equals("App.Admin")){
 
             switch (methodName) {
-                case "addUser" -> addUser((User) parameter);
                 case "addRestaurant" -> addRestaurant((Restaurant) parameter);
                 case "addDeliveringArea" -> addDeliveringArea((String) parameter);
                 case "addDeliveryPartner" -> addDeliveryPartner((DeliveryPartner) parameter);

@@ -1,6 +1,6 @@
 package App;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class User {
     private String userName;
@@ -8,7 +8,7 @@ public class User {
     private char[] userPassword;
     private int pinCode;
     private Cart myCart;
-    private DiscountCoupon myCoupons;
+    private ArrayList<DiscountCoupon> myCoupons;
 
     public User(String userName, char[] userPassword, String userArea, int pinCode) {
         this.userName = userName;
@@ -28,29 +28,17 @@ public class User {
 
 
 
-    void changeUserArea(String newArea, int pinCode, char[] userPassword) {
-        if (validatePassword(userPassword)) {
+    public void changeUserArea(String newArea, int pinCode, char[] userPassword) {
             this.userArea = newArea;
             this.pinCode = pinCode;
-        }
     }
 
-    public boolean validatePassword(char[] userPassword) {
-        return (Arrays.equals(this.userPassword, userPassword));
-    }
-
-    Cart getCart(char[] userPassword) {
-        if (validatePassword(userPassword)) {
+    public Cart getUserCart() {
             return myCart;
-        }
-        return null;
     }
 
-    DiscountCoupon getDiscountCoupons(char[] userPassword){
-        if (validatePassword(userPassword)) {
+    public DiscountCoupon getUserDiscountCoupons(){
             return myCoupons;
-        }
-        return null;
     }
 
 }

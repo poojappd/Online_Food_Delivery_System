@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
-class DiscountCoupon {
+public class DiscountCoupon {
 
     enum CouponStatus{
         ACTIVE,
@@ -15,7 +15,7 @@ class DiscountCoupon {
     private float discountPercent;
     private Calendar offerValidity;
 
-    DiscountCoupon(){
+    public DiscountCoupon(){
         this.couponStatus = CouponStatus.ACTIVE;
 
 
