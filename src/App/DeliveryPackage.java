@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class DeliveryPackage {
     String userName;
-    String userLocation;
+    String userArea;
     int deliveryId;
     ArrayList<Restaurant.Food> foodItems;
 
