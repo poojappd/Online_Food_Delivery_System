@@ -1,6 +1,6 @@
 package Main;
 
-import App.Admin;
+import App.RestaurantAdmin;
 
 public class Main {
     enum UserType {
@@ -10,10 +10,10 @@ public class Main {
     UserType userType = UserType.ADMIN;
 
     public static void main(String[] args) {
-        Admin admin = Admin.instantiateOnce();
-        admin.AdminApp();
+        RestaurantAdmin restaurantAdmin = RestaurantAdmin.instantiateOnce();
         UserApp userApp = new UserApp();
         userApp.launchApp();
+
 
 
     }

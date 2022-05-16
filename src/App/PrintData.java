@@ -28,11 +28,11 @@ public class PrintData {
         //show user's Cart items;
     }
 
-    public static void showUserProfile(User user){
-        //Print user data
+    public static void showUserProfile(EndUser userAccount){
+        //Print userAccount data
     }
 
-    public static void showUserCoupons(User user){
+    public static void showUserCoupons(EndUser userAccount){
 
     }
 

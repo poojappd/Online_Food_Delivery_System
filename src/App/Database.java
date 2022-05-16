@@ -20,21 +20,15 @@ import java.util.HashMap;
     }
 
     // Data
-    private final HashMap<String, User> EndUsers = new HashMap<>();
+    private final HashMap<String, EndUser> EndUsers = new HashMap<>();
     private final HashMap<String, char[]> userCredentials = new HashMap<>();
-    private final HashMap<Integer, Restaurant> allRestaurants = new HashMap<>();
-    private final ArrayList<String> deliveringAreas = new ArrayList<>();
-    private final HashMap<Integer, DeliveryPartner> deliveryPartners = new HashMap<>();
-    private final HashMap<String, ArrayList<Integer>> activeDeliveryPartners = new HashMap<>();
 
-    public void addUser(User newUser, char[] encryptedPassword) {
-        EndUsers.put(newUser.getUserName(), newUser);
-        userCredentials.put(newUser.getUserName(), encryptedPassword);
+
+    public void addUser(EndUser newUserAccount, char[] encryptedPassword) {
+        EndUsers.put(newUserAccount.getUserName(), newUserAccount);
+        userCredentials.put(newUserAccount.getUserName(), encryptedPassword);
     }
 
-    private void addRestaurant(Restaurant newRestaurant) {
-        allRestaurants.put(newRestaurant.restaurantId, newRestaurant);
-    }
 
     private void addDeliveringArea(String deliveringArea) {
         // String
@@ -46,7 +40,7 @@ import java.util.HashMap;
         deliveryPartners.put(newDeliveryPartner.getDeliveryPartnerId(), newDeliveryPartner);
     }
 
-    public User getUser(String username, String checkPassword) {
+    public EndUser getUser(String username, String checkPassword) {
         char[] actualPassword = EncryptDecrypt.decrypt(userCredentials.get(username));
         if (Arrays.equals(actualPassword, checkPassword.toCharArray())) {
                 return EndUsers.get(username);
@@ -86,7 +80,7 @@ import java.util.HashMap;
     Restaurant onlyAllowAdmin(String methodName, Object parameter){
         String callerClassName = new Exception().getStackTrace()[1].getClassName();
 
-        if(callerClassName.equals("App.Admin")){
+        if(callerClassName.equals("App.RestaurantAdmin")){
 
             switch (methodName) {
                 case "addRestaurant" -> addRestaurant((Restaurant) parameter);

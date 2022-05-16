@@ -5,10 +5,10 @@ import App.*;
 import java.util.ArrayList;
 
 public class UserApp {
-    private User currentAppUser;
+    private EndUser currentAppUserAccount;
     private Database database = Database.instantiateOnce();
     private Cart currentUserCart;
-    private DiscountCoupon currentUserCoupons;
+    private ArrayList<DiscountCoupon> currentUserCoupons;
     private int chosenRestaurantId;
     private boolean couponApplied;
 
@@ -22,7 +22,7 @@ public class UserApp {
         // existing user
         if (loginType.equals("login")) {
             // get userName, password and fetch from db
-            currentAppUser = database.getUserProfile(userName, userPassword);
+            currentAppUserAccount = database.getUserProfile(userName, userPassword);
         }
 
         // new user
@@ -33,8 +33,8 @@ public class UserApp {
             char[] encryptedPassword = EncryptDecrypt.encrypt(userPassword);
             // handlers for illegal inputs
 
-            currentAppUser = new User(userName, encryptedPassword, userArea, pinCode);
-            database.addUser(currentAppUser, encryptedPassword);
+            currentAppUserAccount = new EndUser(userName, encryptedPassword, userArea, pinCode);
+            database.addUser(currentAppUserAccount, encryptedPassword);
         }
     }
 
@@ -77,19 +77,19 @@ public class UserApp {
         String restaurantName = currentUserCart.getRestaurantName(),
                 restaurantArea = currentUserCart.getRestaurantArea();
 
-        Admin.handleUserOrders(currentAppUser.getUserName(),
-                currentAppUser.getUserArea(), currentUserCart.getRestaurantId(),
+        RestaurantAdmin.handleUserOrders(currentAppUserAccount.getUserName(),
+                currentAppUserAccount.getUserArea(), currentUserCart.getRestaurantId(),
                 currentUserCart.getCartItems()
                 );
-        UserBill newBill = new UserBill(restaurantName, restaurantArea, currentAppUser.getUserName(),
-                currentAppUser.getUserArea(), new ArrayList<>(currentUserCart.getCartItems().values()),
+        UserBill newBill = new UserBill(restaurantName, restaurantArea, currentAppUserAccount.getUserName(),
+                currentAppUserAccount.getUserArea(), new ArrayList<>(currentUserCart.getCartItems().values()),
                 deliveryCharges );
 
 
     }
 
     private void goToProfile() {
-        PrintData.showUserProfile(currentAppUser);
+        PrintData.showUserProfile(currentAppUserAccount);
     }
     private void goToOrders(){
 
@@ -97,11 +97,11 @@ public class UserApp {
 
     public void launchApp() {
         goToLoginPage(); //get user object
-        if (currentAppUser != null) {
+        if (currentAppUserAccount != null) {
 
             // load their pre-saved cart
-            currentUserCart = currentAppUser.getUserCart();
-            currentUserCoupons = currentAppUser.getUserDiscountCoupons();
+            currentUserCart = currentAppUserAccount.getUserCart();
+            currentUserCoupons = currentAppUserAccount.getUserDiscountCoupons();
             // else create a new Cart
 
             goToHomepage();

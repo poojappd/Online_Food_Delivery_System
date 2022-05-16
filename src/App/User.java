@@ -1,44 +1,21 @@
 package App;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
-public class User {
+class User {
     private String userName;
-    private String userArea;
-    private char[] userPassword;
-    private int pinCode;
-    private Cart myCart;
-    private ArrayList<DiscountCoupon> myCoupons;
+    private char[] password;
 
-    public User(String userName, char[] userPassword, String userArea, int pinCode) {
+    User(String userName, char[] password){
         this.userName = userName;
-        this.userArea = userArea;
-        this.pinCode = pinCode;
-        this.userPassword = userPassword;
-        myCart = new Cart();
+        this.password = password;
     }
 
-    public String getUserName() {
+    String getUserName(){
         return userName;
     }
 
-    public String getUserArea() {
-        return userArea;
+    boolean verifyPassword(char[] somePassword){
+        return Arrays.equals(somePassword, password);
     }
-
-
-
-    public void changeUserArea(String newArea, int pinCode, char[] userPassword) {
-            this.userArea = newArea;
-            this.pinCode = pinCode;
-    }
-
-    public Cart getUserCart() {
-            return myCart;
-    }
-
-    public DiscountCoupon getUserDiscountCoupons(){
-            return myCoupons;
-    }
-
 }
